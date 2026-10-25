@@ -2,7 +2,7 @@
 
 BluetoothSerial SerialBT;
 
-// პორტების განსაზღვრა
+// პორტების განსაზღვრა ჩაშენებული შუქდიოდისა და რელეებისათვის
 #define LED 23   //Onboard LED
 #define RELAY1 32
 #define RELAY2 33
@@ -11,19 +11,20 @@ BluetoothSerial SerialBT;
 
 void setup() {
   Serial.begin(115200);
-
+// განვსაზღვრავთ პინებს, როგორც გამოსასვლელს
   pinMode(LED, OUTPUT);
   pinMode(RELAY1, OUTPUT);
   pinMode(RELAY2, OUTPUT);
   pinMode(RELAY3, OUTPUT);
   pinMode(RELAY4, OUTPUT);
-
+// ვაყენებთ პინებზე დაბალ ლოგიკურ დონეს (გამორთულია)
   digitalWrite(LED, LOW);
   digitalWrite(RELAY1, LOW);
   digitalWrite(RELAY2, LOW);
   digitalWrite(RELAY3, LOW);
   digitalWrite(RELAY4, LOW);
 
+//ვხსნით ბლუთუსის მიმდევრობით შეერთებას
   SerialBT.begin("ESP32_4_Relay");
 
 }
@@ -74,7 +75,7 @@ void loop() {
         digitalWrite(LED, LOW);
         break;
       
-      case 's':
+      case 's':   //თუ ეკრანზე დააჭირეს ლოგოს გამოსახულება და მოვიდა ბრძანება "s", ვკითხულობთ პორტების სტატუსს
         String str =
           String(digitalRead(RELAY1)) +
           String(digitalRead(RELAY2)) +
